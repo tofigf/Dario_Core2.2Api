@@ -1,0 +1,57 @@
+[
+  {
+    "Username": "Lillie",
+    "ImageUrl": "1f2f3043-4923-4964-a9a4-c33a9698e54c",
+    "Email": "puckettrich@scenty.com",
+    "Adress": "Meserole Street",
+    "Gender": 1,
+    "DateOfBirth": "1960-01-12",
+    "Password": "password",
+    "CreatedAt": "2017-04-23",
+    "Desc": "Aliquip tempor amet incididunt veniam dolore fugiat aute proident dolor."
+  },
+  {
+    "Username": "Velma",
+    "ImageUrl": "69611030-73bc-4327-8520-379f09bdb41b",
+    "Email": "minniehamilton@netbook.com",
+    "Adress": "Quentin Road",
+    "Gender": 1,
+    "DateOfBirth": "1996-12-15",
+    "Password": "password",
+    "CreatedAt": "2017-05-12",
+    "Desc": "Et excepteur et consectetur sit nisi proident nostrud aute aute quis consectetur occaecat ipsum."
+  },
+  {
+    "Username": "Delia",
+    "ImageUrl": "0f2fc1fc-56b2-4864-8e94-b809635bfe5e",
+    "Email": "langdowns@iplax.com",
+    "Adress": "Ryder Street",
+    "Gender": 1,
+    "DateOfBirth": "1994-03-25",
+    "Password": "password",
+    "CreatedAt": "2017-03-06",
+    "Desc": "Qui ad mollit ex consequat cupidatat magna sit sit qui nostrud."
+  },
+  {
+    "Username": "Noreen",
+    "ImageUrl": "dff24019-7681-4293-9a63-dfc03f7239c6",
+    "Email": "lindsayvasquez@entality.com",
+    "Adress": "Clara Street",
+    "Gender": 1,
+    "DateOfBirth": "1971-12-18",
+    "Password": "password",
+    "CreatedAt": "2017-07-07",
+    "Desc": "Culpa adipisicing irure quis incididunt esse sunt amet est anim exercitation aliqua id ipsum."
+  },
+  {
+    "Username": "Dora",
+    "ImageUrl": "db6b7a2e-c6d7-4fe6-8642-87a2cacf15d7",
+    "Email": "oliviamays@cinaster.com",
+    "Adress": "Ridgewood Place",
+    "Gender": 1,
+    "DateOfBirth": "1968-04-27",
+    "Password": "password",
+    "CreatedAt": "2017-06-25",
+    "Desc": "Elit est et irure ut laboris mollit."
+  }
+]

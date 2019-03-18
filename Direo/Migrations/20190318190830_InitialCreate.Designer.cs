@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Direo.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190318105215_InitialCreate")]
+    [Migration("20190318190830_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
