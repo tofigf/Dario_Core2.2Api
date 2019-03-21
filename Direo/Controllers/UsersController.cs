@@ -18,10 +18,10 @@ namespace Direo.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly IDatingRepository _repo;
+        private readonly IUserRepository _repo;
         private readonly IMapper _mapper;
 
-        public UsersController(IDatingRepository repo, IMapper mapper)
+        public UsersController(IUserRepository repo, IMapper mapper)
         {
             _mapper = mapper;
             _repo = repo;

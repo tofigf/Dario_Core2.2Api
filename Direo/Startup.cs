@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Direo.Data;
+using Direo.Data.Repository;
+using Direo.Data.Repository.Interface;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -42,7 +44,8 @@ namespace Direo
             services.AddTransient<Seed>();
             services.AddCors();
             services.AddScoped<IAuthRepository, AuthRepository>();
-            services.AddScoped<IDatingRepository, DatingRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IMainRepository, MainRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                .AddJwtBearer(options => {
                    options.TokenValidationParameters = new TokenValidationParameters

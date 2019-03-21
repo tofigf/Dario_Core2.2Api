@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using Direo.Dtos;
+using Direo.Dtos.CategoryDtos;
+using Direo.Dtos.MainDtos;
 using Direo.Models;
 using System;
 using System.Collections.Generic;
@@ -17,6 +19,13 @@ namespace Direo.Helpers
 
             CreateMap<User, UserForListDto>();
             CreateMap<User, UserForDetailDto>();
+            /////////////////////////////////////
+            ///Main
+            //Category
+            CreateMap<Category, CategoryDto>();
+            //Location
+            CreateMap<Location, LocationDto>();
+
 
    
             }

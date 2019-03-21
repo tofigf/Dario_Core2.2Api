@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Direo.Data
 {
-    public class DatingRepository : IDatingRepository
+    public class UserRepository : IUserRepository
     {
         private readonly DataContext _context;
 
-        public DatingRepository(DataContext context)
+        public UserRepository(DataContext context)
         {
             _context = context;
         }
@@ -41,24 +41,6 @@ namespace Direo.Data
         public async Task<bool> SaveAll()
         {
             return await _context.SaveChangesAsync() > 0;
-        }
-
-        public async Task<User>UpdateUser(User user,string password)
-        {
-            _context.Users.Attach(user);
-            _context.Entry(user).State = EntityState.Modified;
-            _context.Entry(user).Property(p => p.CreatedAt).IsModified = false;
-            if(password == null)
-            {
-                //_context.Entry(user).Property(p => p.PasswordHash).IsModified = false;
-                //_context.Entry(user).Property(p => p.PasswordSalt).IsModified = false;
-            }
-            _context.Entry(user).Property(p => p.Status).IsModified = false;
-       
-
-            await _context.SaveChangesAsync();
-
-            return user;
         }
 
 

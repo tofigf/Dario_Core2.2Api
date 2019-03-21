@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Direo.Data
 {
-    public interface IDatingRepository
+    public interface IUserRepository
     {
         void Add<T>(T entity) where T : class;
         void Delete<T>(T entity) where T : class;
         Task<bool> SaveAll();
         Task<IEnumerable<User>> GetUsers();
         Task<User> GetUser(int id);
-        Task<User>UpdateUser(User user, string password);
+      
         Task<User>UpdatePost(User user, string password);
     }
 }

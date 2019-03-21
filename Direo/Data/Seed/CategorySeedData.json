@@ -1,0 +1,26 @@
+[
+  {
+    "Name": "Restaurants",
+    "Icon": "la la-cutlery"
+  },
+  {
+    "Name": "Places & Destination",
+    "Icon": "la la-map-marker"
+  },
+  {
+    "Name": "Shopping & Store",
+    "Icon": "la la-shopping-cart"
+  },
+  {
+    "Name": "Art & History",
+    "Icon": "la la-bank"
+  },
+  {
+    "Name": "Hotel & Travel",
+    "Icon": "la la-bed"
+  },
+  {
+    "Name": "Food & Drink",
+    "Icon": "la la-glass"
+  }
+]
