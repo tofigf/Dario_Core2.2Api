@@ -38,12 +38,44 @@ namespace Direo.Data
           
             return users;
         }
-
         public async Task<bool> SaveAll()
         {
             return await _context.SaveChangesAsync() > 0;
         }
 
-   
+        public async Task<User>UpdateUser(User user,string password)
+        {
+            _context.Users.Attach(user);
+            _context.Entry(user).State = EntityState.Modified;
+            _context.Entry(user).Property(p => p.CreatedAt).IsModified = false;
+            if(password == null)
+            {
+                //_context.Entry(user).Property(p => p.PasswordHash).IsModified = false;
+                //_context.Entry(user).Property(p => p.PasswordSalt).IsModified = false;
+            }
+            _context.Entry(user).Property(p => p.Status).IsModified = false;
+       
+
+            await _context.SaveChangesAsync();
+
+            return user;
+        }
+
+
+        public async Task<User> UpdatePost(User user,string password)
+        {
+            if (user.Username != null)
+            {
+                user.Password = CryptoHelper.Crypto.HashPassword(password);
+                //Delete that post
+                    _context.Users.Update(user);
+
+                //Commit the transaction
+                await _context.SaveChangesAsync();
+            }
+            return user;
+        }
+
+     
     }
 }

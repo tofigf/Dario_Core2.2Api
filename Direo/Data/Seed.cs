@@ -17,30 +17,24 @@ namespace Direo.Data
         //bu metodla UserSeedData.json-nu database-e elave edirik.
         public void SeedUsers()
         {
-            var userData = System.IO.File.ReadAllText("Data/UserSeedData.json");
-            var users = JsonConvert.DeserializeObject<List<User>>(userData);
-
-            foreach (var user in users)
+            if (_context.Users.ToList().Count == 0)
             {
-                byte[] passwordHash, passwordSalt;
-                CreatePasswordHash("password", out passwordHash, out passwordSalt);
-                user.PasswordHash = passwordHash;
-                user.PasswordSalt = passwordSalt;
-                user.Username = user.Username.ToLower();
-                _context.Users.Add(user);
+                var userData = System.IO.File.ReadAllText("Data/UserSeedData.json");
+                var users = JsonConvert.DeserializeObject<List<User>>(userData);
+
+                foreach (var user in users)
+                {
+
+                  var cryptoPassword = CryptoHelper.Crypto.HashPassword("password");
+                    user.Password = cryptoPassword;
+                    user.Username = user.Username.ToLower();
+                    _context.Users.Add(user);
+                }
+                _context.SaveChanges();
             }
-            _context.SaveChanges();
+    
         }
 
-
-        private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
-        {
-            using (var hmac = new System.Security.Cryptography.HMACSHA512())
-            {
-                passwordSalt = hmac.Key;
-                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-            }
-        }
 
     }
 }

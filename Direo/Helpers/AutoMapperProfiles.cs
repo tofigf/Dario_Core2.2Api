@@ -13,7 +13,13 @@ namespace Direo.Helpers
         public AutoMapperProfiles()
         {
             CreateMap<UserForRegisterDto, User>();
-        }
+            CreateMap<UserForUpdateDto, User>();
+
+            CreateMap<User, UserForListDto>();
+            CreateMap<User, UserForDetailDto>();
+
+   
+            }
       
     }
 }

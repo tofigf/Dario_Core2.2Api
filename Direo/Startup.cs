@@ -34,7 +34,10 @@ namespace Direo
         {
             services.AddDbContext<DataContext>(x =>
                               x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2).AddJsonOptions(opt => {
+                opt.SerializerSettings.ReferenceLoopHandling =
+                    Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            }); 
             services.AddAutoMapper();
             services.AddTransient<Seed>();
             services.AddCors();

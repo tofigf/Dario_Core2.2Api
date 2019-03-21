@@ -14,5 +14,7 @@ namespace Direo.Data
         Task<bool> SaveAll();
         Task<IEnumerable<User>> GetUsers();
         Task<User> GetUser(int id);
+        Task<User>UpdateUser(User user, string password);
+        Task<User>UpdatePost(User user, string password);
     }
 }
