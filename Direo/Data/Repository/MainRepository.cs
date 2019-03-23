@@ -1,4 +1,5 @@
 ﻿using Direo.Data.Repository.Interface;
+using Direo.Helpers;
 using Direo.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -24,12 +25,10 @@ namespace Direo.Data.Repository
         {
              _context.Update(entity);
         }
-
         public void Delete<T>(T entity) where T : class
         {
             _context.Remove(entity);
         }
-
         public async Task<bool> SaveAll()
         {
             return await _context.SaveChangesAsync() > 0;
@@ -47,6 +46,14 @@ namespace Direo.Data.Repository
             var locations = await _context.Locations.ToListAsync();
 
             return locations;
+        }
+
+
+        public async Task<PagedList<Listing>> GetListing(ListingParam listingParam)
+        {
+            var listings = _context.Listings.Include(f => f.Photos);
+
+            return await PagedList<Listing>.CreateAsync(listings, listingParam.PageNumber,listingParam.PageSize);
         }
 
     }

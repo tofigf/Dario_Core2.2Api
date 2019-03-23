@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Direo.Helpers
 {
-    public class UserParams
+    public class ListingParam
     {
         private const int MaxPageSize = 50;
         public int PageNumber { get; set; } = 1;
@@ -16,12 +16,17 @@ namespace Direo.Helpers
             set { pageSize = (value > MaxPageSize) ? MaxPageSize : value; }
         }
 
-        public int UserId { get; set; }
-        public string Gender { get; set; }
-        public int MinAge { get; set; } = 18;
-        public int MaxAge { get; set; } = 99;
+
+        public int CategoryId { get; set; }
+
+        public int LocationId { get; set; }
+
+        public decimal MinPrice { get; set; }
+
+        public decimal MaxPrice { get; set; }
+
         public string OrderBy { get; set; }
-        public bool Likees { get; set; } = false;
-        public bool Likers { get; set; } = false;
+
+        public int[] TagId { get; set; }
     }
 }

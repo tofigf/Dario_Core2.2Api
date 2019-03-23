@@ -19,6 +19,8 @@ namespace Direo.Data
         public DbSet<ReviewsListing> ReviewsListings { get; set; }
         public DbSet<SidebarForm> SidebarForms { get; set; }
         public DbSet<Subscriber> Subscribers { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<ListingTag> ListingTags { get; set; }
 
     }
 }

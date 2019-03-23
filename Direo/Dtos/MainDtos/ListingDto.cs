@@ -5,13 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Direo.Models
+namespace Direo.Dtos.MainDtos
 {
-    public class Listing
+    public class ListingDto
     {
-        public int Id { get; set; }
 
-        [Required, MaxLength(150)]
+        public int Id { get; set; }
         public string Title { get; set; }
 
 
@@ -79,17 +78,8 @@ namespace Direo.Models
 
         public int LocationId { get; set; }
 
-       
+
         public int UserId { get; set; }
-
-        public virtual Category Category { get; set; }
-        public virtual Location Location { get; set; }
-        public virtual User User { get; set; }
-
-
-        public virtual ICollection<Photo> Photos { get; set; }
-        public virtual ICollection<ReviewsListing> ReviewsListings { get; set; }
-        public virtual ICollection<ListingTag> ListingTags { get; set; }
 
     }
 }

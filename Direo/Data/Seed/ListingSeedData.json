@@ -1,0 +1,46 @@
+[
+  {
+
+    "Title": "Strawberry Basil Lemonade",
+    "LongDescription": "Excepteur sint occaecat cupidatat non proident, sunt in culpa kequi officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusan tium dolorem que laudantium, totam rem aperiam the eaque ipsa quae abillo was inventore veritatis keret quasi aperiam architecto beatae vitae dicta sunt explicabo. Nemo ucxqui officia voluptatem accu santium doloremque laudantium, totam rem ape dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas.",
+    "Tagline": "Best place for delicious foods",
+    "Price": null,
+    "PriceRangeId": "1",
+    "ShortDescription": "Ensuring productivity and growth is essential for architecture and engineering teams. The industry requires a high level of precision, full legal compliance",
+    "Address": "25 East Valley Road, New York",
+    "Phone": "(213)995-7799",
+    "Email": "support@aztech.com",
+    "Facebook": "facebook.com/aztech",
+    "VideoUrl": null,
+    "IsSevenTwentyFour": "False",
+    "Longitude": "49.874732",
+    "Latitude": "40.313582",
+    "Website": "aztech.com",
+    "ViewsCount": "25",
+    "Rating": "4.4",
+    "PostDate": "2019-03-12 15:01:00",
+    "Status": "True"
+  },
+  {
+
+    "Title": "A title is one or more words used before or after a person's name, in certain contexts.",
+    "LongDescription": "A long description is a way to provide long alternative text for non-text elements, such as images. Generally, alternative text exceeding 250 characters, which cannot be made more concise without making it less descriptive or meaningful, should have a long description.",
+    "Tagline": "Lorem ipsum dolor sit amet",
+    "Price": "300",
+    "PriceRangeId": null,
+    "ShortDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "Address": "Baku, Nizami Street 14",
+    "Phone": "0124552125",
+    "Email": "lorem@gmail.com",
+    "Facebook": "facebook.com/lorem",
+    "VideoUrl": null,
+    "IsSevenTwentyFour": "True",
+    "Longitude": "49.884732",
+    "Latitude": "40.383582",
+    "Website": "lorem.com",
+    "ViewsCount": "20",
+    "Rating": "4.6",
+    "PostDate": "2019-03-14 15:03:00",
+    "Status": "True"
+  }
+]

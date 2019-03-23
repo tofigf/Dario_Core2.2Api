@@ -42,9 +42,9 @@ namespace Direo.Controllers
 
             var createdUser = await _repo.Register(userToCreate, userForRegisterDto.Password);
 
-            //var userToReturn = _mapper.Map<UserForDetailedDto>(createdUser);
-            return StatusCode(201);
-
+            var userToReturn = _mapper.Map<UserForDetailDto>(createdUser);
+         
+            return CreatedAtRoute("GetUser", new { controller = "Users", id = createdUser.Id }, userToReturn);
         }
 
         [HttpPost("login")]
@@ -77,12 +77,12 @@ namespace Direo.Controllers
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            //var user = _mapper.Map<UserForListDto>(userFromRepo);
+            var user = _mapper.Map<UserForListDto>(userFromRepo);
 
             return Ok(new
             {
                 token = tokenHandler.WriteToken(token),
-                //user
+                user
             });
         }
     }

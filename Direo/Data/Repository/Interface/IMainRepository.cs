@@ -1,4 +1,5 @@
-﻿using Direo.Models;
+﻿using Direo.Helpers;
+using Direo.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,6 @@ namespace Direo.Data.Repository.Interface
         Task<bool> SaveAll();
         Task<IEnumerable<Category>> GetCategories();
         Task<IEnumerable<Location>> GetLocations();
+        Task<PagedList<Listing>> GetListing(ListingParam listingParam);
     }
 }

@@ -6,6 +6,7 @@ using AutoMapper;
 using Direo.Data.Repository.Interface;
 using Direo.Dtos.CategoryDtos;
 using Direo.Dtos.MainDtos;
+using Direo.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -36,7 +37,7 @@ namespace Direo.Controllers
             return Ok(CategoryToReturn);
         }
 
-        //Butun kateqoriyalari getirmek
+        //Butun olkeleri getirmek
         [HttpGet]
         [Route("locations")]
         public async Task<IActionResult> GetLocations()
@@ -45,6 +46,21 @@ namespace Direo.Controllers
 
             var LocationToReturn = _mapper.Map<IEnumerable<LocationDto>>(locations);
             return Ok(LocationToReturn);
+        }
+
+        //Butun listingleri getirmek
+        [HttpGet]
+        [Route("listings")]
+        public async Task<IActionResult> GetListing([FromQuery]ListingParam listingParam)
+        {
+             var listings = await _repo.GetListing(listingParam);
+
+            var ListingToReturn = _mapper.Map<IEnumerable<ListingDto>>(listings);
+
+             Response.AddPagination(listings.CurrentPage, listings.PageSize,
+               listings.TotalCount, listings.TotalPages);
+
+            return Ok(ListingToReturn);
         }
 
     }
