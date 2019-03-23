@@ -29,7 +29,7 @@ namespace Direo.Data
         public async Task<User> GetUser(int id)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
-
+            
             return user;
         }
         public async Task<IEnumerable<User>> GetUsers()
@@ -44,13 +44,14 @@ namespace Direo.Data
         }
 
 
-        public async Task<User> UpdatePost(User user,string password)
+        public async Task<User> UpdateUser(User user,string password)
         {
             if (user.Username != null)
             {
                 user.Password = CryptoHelper.Crypto.HashPassword(password);
+                user.ImageUrl = FileManager.Upload(user.ImageUrl, "jpg");
                 //Delete that post
-                    _context.Users.Update(user);
+                _context.Users.Update(user);
 
                 //Commit the transaction
                 await _context.SaveChangesAsync();
@@ -58,6 +59,15 @@ namespace Direo.Data
             return user;
         }
 
+        public async Task<User> DeleteUserPhoto(int id)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+            user.ImageUrl = "empty";
+            _context.SaveChanges();
+            FileManager.Delete(user.ImageUrl);
+
+            return user;
+        }
      
     }
 }

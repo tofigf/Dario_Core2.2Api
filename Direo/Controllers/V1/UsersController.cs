@@ -53,7 +53,7 @@ namespace Direo.Controllers
                 return Unauthorized();
          
             var userFromRepo = await _repo.GetUser(userForUpdateDto.Id);
-         
+
             if (!ModelState.IsValid)
                 return BadRequest();
 
@@ -62,7 +62,7 @@ namespace Direo.Controllers
 
             var userToUpdate = _mapper.Map(userForUpdateDto, userFromRepo);
 
-            var createdUser = await _repo.UpdatePost(userToUpdate, userForUpdateDto.Password);
+            var createdUser = await _repo.UpdateUser(userToUpdate, userForUpdateDto.Password);
 
             var userToReturn = _mapper.Map<UserForDetailDto>(createdUser);
 
@@ -70,7 +70,17 @@ namespace Direo.Controllers
 
 
         }
-   
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUserPhoto(int id)
+        {
+            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            var DeletedUserPhoto= await _repo.DeleteUserPhoto(id);
+            var userToReturn = _mapper.Map<UserForDetailDto>(DeletedUserPhoto);
+            return Ok(userToReturn);
+        }
 
 
     }

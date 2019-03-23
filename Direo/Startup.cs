@@ -74,6 +74,7 @@ namespace Direo
             seeder.SeedUsers();
             app.UseAuthentication();
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
             app.UseMvc();
         }
     }

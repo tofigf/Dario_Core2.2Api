@@ -26,6 +26,7 @@ namespace Direo.Controllers
             _repo = repo;
             _mapper = mapper;
         }
+
         //Butun kateqoriyalari getirmek
         [HttpGet]
         [Route("categories")]
