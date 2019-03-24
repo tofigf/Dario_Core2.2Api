@@ -20,9 +20,6 @@ namespace Direo.Models
         [MaxLength(50)]
         public string LastName { get; set; }
 
-        [MaxLength(20)]
-        public string Gender { get; set; }
-
       
         public string ImageUrl { get; set; }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Direo.Models
 {
-    public class Category
+    public class CategoryDtos
     {
         public int Id { get; set; }
 

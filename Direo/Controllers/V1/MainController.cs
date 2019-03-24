@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using Direo.Data.Repository.Interface;
 using Direo.Dtos.CategoryDtos;
 using Direo.Dtos.MainDtos;
 using Direo.Helpers;
+using Direo.Models;
+using Direo.Models.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -64,5 +67,23 @@ namespace Direo.Controllers
             return Ok(ListingToReturn);
         }
 
+
+        [HttpPost]
+        [Route("addlisting")]
+        public async Task<IActionResult> AddListing( ListingDtoCreateModel listingDtoCreate)
+        {
+            //if (listingDtoCreate.ListingPost.UserId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            //    return Unauthorized();
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
+            var listing = _mapper.Map<Listing>(listingDtoCreate.Listing);
+
+            var listingToReturn = await _repo.CreateListing(listing, userId);
+
+            return Ok(listingToReturn);
+        }
     }
 }

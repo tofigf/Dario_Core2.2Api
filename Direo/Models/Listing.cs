@@ -7,13 +7,25 @@ using System.Threading.Tasks;
 
 namespace Direo.Models
 {
+    public enum PriceRange
+    {
+        Ultra,
+        Expensive,
+        Moderate,
+        Cheap
+    }
+    public enum Gender
+    {
+        Male,
+        Female,
+        Other
+    }
     public class Listing
     {
         public int Id { get; set; }
 
         [Required, MaxLength(150)]
         public string Title { get; set; }
-
 
         [Column(TypeName = "text")]
         public string LongDescription { get; set; }
@@ -23,6 +35,10 @@ namespace Direo.Models
 
         [Column(TypeName = "money")]
         public decimal? Price { get; set; }
+
+        public PriceRange? PriceRangeId { get; set; }
+
+        public Gender? Gender { get; set; }
 
         [MaxLength(200)]
         public string ShortDescription { get; set; }
@@ -54,6 +70,13 @@ namespace Direo.Models
         [MaxLength(50)]
         public string Youtube { get; set; }
 
+     
+        public string Photo { get; set; }
+
+        [MaxLength(100)]
+        public string PhotoFileName { get; set; }
+
+
         [MaxLength(50)]
         public string VideoUrl { get; set; }
 
@@ -67,7 +90,6 @@ namespace Direo.Models
 
         public int? ViewsCount { get; set; }
 
-
         public decimal? Rating { get; set; }
 
         public DateTime PostDate { get; set; }
@@ -79,10 +101,9 @@ namespace Direo.Models
 
         public int LocationId { get; set; }
 
-       
         public int UserId { get; set; }
 
-        public virtual Category Category { get; set; }
+        public virtual CategoryDtos Category { get; set; }
         public virtual Location Location { get; set; }
         public virtual User User { get; set; }
 
@@ -90,6 +111,8 @@ namespace Direo.Models
         public virtual ICollection<Photo> Photos { get; set; }
         public virtual ICollection<ReviewsListing> ReviewsListings { get; set; }
         public virtual ICollection<ListingTag> ListingTags { get; set; }
+        public virtual ICollection<OpeningHour> OpeningHours { get; set; }
+        public virtual ICollection<FagListing> FagListings { get; set; }
 
     }
 }

@@ -13,7 +13,10 @@ namespace Direo.Models
 
         public string PhotoUrl { get; set; }
 
-        public DateTime DateAdded { get; set; }
+        [MaxLength(100)]
+        public string PhotoName { get; set; }
+
+        public DateTime? DateAdded { get; set; }
 
         public bool IsMain { get; set; }
 

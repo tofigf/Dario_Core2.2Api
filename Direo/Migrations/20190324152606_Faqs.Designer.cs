@@ -4,14 +4,16 @@ using Direo.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Direo.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20190324152606_Faqs")]
+    partial class Faqs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,7 +21,7 @@ namespace Direo.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Direo.Models.CategoryDtos", b =>
+            modelBuilder.Entity("Direo.Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -94,11 +96,6 @@ namespace Direo.Migrations
 
                     b.Property<string>("Phone")
                         .HasMaxLength(50);
-
-                    b.Property<string>("Photo");
-
-                    b.Property<string>("PhotoFileName")
-                        .HasMaxLength(100);
 
                     b.Property<DateTime>("PostDate");
 
@@ -212,14 +209,11 @@ namespace Direo.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime?>("DateAdded");
+                    b.Property<DateTime>("DateAdded");
 
                     b.Property<bool>("IsMain");
 
                     b.Property<int>("ListingId");
-
-                    b.Property<string>("PhotoName")
-                        .HasMaxLength(100);
 
                     b.Property<string>("PhotoUrl");
 
@@ -372,7 +366,7 @@ namespace Direo.Migrations
 
             modelBuilder.Entity("Direo.Models.Listing", b =>
                 {
-                    b.HasOne("Direo.Models.CategoryDtos", "Category")
+                    b.HasOne("Direo.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);

@@ -1,5 +1,6 @@
 ﻿using Direo.Helpers;
 using Direo.Models;
+using Direo.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +14,9 @@ namespace Direo.Data.Repository.Interface
         void Delete<T>(T entity) where T : class;
         void Update<T>(T entity) where T : class;
         Task<bool> SaveAll();
-        Task<IEnumerable<Category>> GetCategories();
+        Task<IEnumerable<CategoryDtos>> GetCategories();
         Task<IEnumerable<Location>> GetLocations();
         Task<PagedList<Listing>> GetListing(ListingParam listingParam);
+        Task<Listing> CreateListing(Listing listingCreate, int userId);
     }
 }

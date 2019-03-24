@@ -1,0 +1,95 @@
+{
+  "Place": {
+    "Name": "CafeCity",
+    "Desc": "LongDescription4",
+    "Price": 800,
+    "ShortDesc": "ShortDescription4",
+    "Location": "Location4",
+    "Video": "youtube.com/video1",
+    "Lat": "Lat4",
+    "Long": "Long4",
+    "HideContactInfo": "False",
+    "Address": "Address4",
+    "Phone": "0554978303",
+    "Website": "cafecity.az",
+    "HideMap": "false",
+    "Gender": "1",
+    "CategoryId": "1",
+    "PhotoFileName": "test1.png",
+    "Photo": "{{base64}}",
+    "CityId": 1
+  },
+  "SliderPhotos": [
+    {
+      "PhotoName": "myprofile1.jpg",
+      "Photo": "{{base64}}"
+    },
+    {
+      "PhotoName": "myprofile2.jpg",
+      "Photo": "{{base64}}"
+    },
+    {
+      "PhotoName": "myprofile3.jpg",
+      "Photo": "{{base64}}"
+    }
+  ],
+  "WorkHours": [
+    {
+      "Day": "1",
+      "StartTime": "10:00:00",
+      "CloseTime": "18:00:00"
+    },
+    {
+      "Day": "2",
+      "StartTime": "10:00:00",
+      "CloseTime": "18:00:00"
+    },
+    {
+      "Day": "3",
+      "StartTime": "10:00:00",
+      "CloseTime": "18:00:00"
+    },
+    {
+      "Day": "4",
+      "StartTime": "10:00:00",
+      "CloseTime": "18:00:00"
+    },
+    {
+      "Day": "5",
+      "StartTime": "10:00:00",
+      "CloseTime": "18:00:00"
+    }
+  ],
+  "Faqs": [
+    {
+      "Question": "What is your name?",
+      "Answer": "My name is Vugar"
+    },
+    {
+      "Question": "What is your name1?",
+      "Answer": "My name is Vugar1"
+    },
+    {
+      "Question": "What is your name2?",
+      "Answer": "My name is Elcin"
+    }
+  ],
+  "Tags": [
+    {
+      "Id": 1
+    },
+    {
+      "Id": 2
+    }
+  ],
+  "Socials": [
+    {
+      "Name": "facebook",
+      "Link": "www.facebook.com"
+    },
+    {
+      "Name": "instagram",
+      "Link": "www.instagram.com"
+    }
+  ]
+}

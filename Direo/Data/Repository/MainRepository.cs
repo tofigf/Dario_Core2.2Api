@@ -1,6 +1,8 @@
 ﻿using Direo.Data.Repository.Interface;
+using Direo.Dtos.MainDtos;
 using Direo.Helpers;
 using Direo.Models;
+using Direo.Models.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -34,7 +36,7 @@ namespace Direo.Data.Repository
             return await _context.SaveChangesAsync() > 0;
         }
 
-        public async Task<IEnumerable<Category>> GetCategories()
+        public async Task<IEnumerable<CategoryDtos>> GetCategories()
         {
             var categories = await _context.Categories.ToListAsync();
 
@@ -48,7 +50,6 @@ namespace Direo.Data.Repository
             return locations;
         }
 
-
         public async Task<PagedList<Listing>> GetListing(ListingParam listingParam)
         {
             var listings = _context.Listings.Include(f => f.Photos);
@@ -56,5 +57,19 @@ namespace Direo.Data.Repository
             return await PagedList<Listing>.CreateAsync(listings, listingParam.PageNumber,listingParam.PageSize);
         }
 
+        public async Task<Listing> CreateListing(Listing listing,int userId )
+        {
+            listing.UserId = userId;
+            listing.PostDate = DateTime.UtcNow.AddHours(4);
+
+            listing.Photo = FileManager.Upload(listing.Photo, listing.PhotoFileName);
+
+            await _context.Listings.AddAsync(listing);
+
+             await  _context.SaveChangesAsync();
+
+            return listing;
+           
+        }
     }
 }

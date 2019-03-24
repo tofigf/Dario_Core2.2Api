@@ -35,7 +35,7 @@ namespace Direo.Data
             if (_context.Categories.ToList().Count == 0)
             {
                 var categoryJson = System.IO.File.ReadAllText("Data/Seed/CategorySeedData.json");
-                var categories = JsonConvert.DeserializeObject<List<Category>>(categoryJson);
+                var categories = JsonConvert.DeserializeObject<List<CategoryDtos>>(categoryJson);
                 foreach (var category in categories)
                 {
                     _context.Categories.Add(category);

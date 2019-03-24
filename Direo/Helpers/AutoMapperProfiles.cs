@@ -14,21 +14,22 @@ namespace Direo.Helpers
     {
         public AutoMapperProfiles()
         {
-            CreateMap<UserForRegisterDto, User>();
-            CreateMap<UserForUpdateDto, User>();
-
-            CreateMap<User, UserForListDto>();
-            CreateMap<User, UserForDetailDto>();
-            /////////////////////////////////////
+            //User
+            CreateMap<UserForRegisterDto, User>().ReverseMap();
+            CreateMap<UserForUpdateDto, User>().ReverseMap();
+            CreateMap<User, UserForListDto>().ReverseMap();
+            CreateMap<User, UserForDetailDto>().ReverseMap();
+      
             ///Main
             //Category
-            CreateMap<Category, CategoryDto>();
+            CreateMap<CategoryDtos, CategoryDto>().ReverseMap();
             //Location
-            CreateMap<Location, LocationDto>();
+            CreateMap<Location, LocationDto>().ReverseMap();
+            //Listing
+            CreateMap<ListingPostDto, Listing>().ReverseMap();
 
 
-   
-            }
+        }
       
     }
 }

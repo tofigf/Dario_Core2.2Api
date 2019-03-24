@@ -1,5 +1,4 @@
-﻿using Direo.Dtos.CategoryDtos;
-using Direo.Models;
+﻿using Direo.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,12 +8,10 @@ using System.Threading.Tasks;
 
 namespace Direo.Dtos.MainDtos
 {
-    public class ListingDto
+    public class ListingPostDto
     {
 
-        public int Id { get; set; }
         public string Title { get; set; }
-
 
         [Column(TypeName = "text")]
         public string LongDescription { get; set; }
@@ -55,6 +52,17 @@ namespace Direo.Dtos.MainDtos
         [MaxLength(50)]
         public string Youtube { get; set; }
 
+       
+        public string Photo { get; set; }
+
+        [MaxLength(100)]
+        public string PhotoFileName { get; set; }
+
+        public Gender? Gender { get; set; }
+        public PriceRange? PriceRangeId { get; set; }
+
+        public DateTime PostDate { get; set; }
+
         [MaxLength(50)]
         public string VideoUrl { get; set; }
 
@@ -68,10 +76,7 @@ namespace Direo.Dtos.MainDtos
 
         public int? ViewsCount { get; set; }
 
-
         public decimal? Rating { get; set; }
-
-        public DateTime PostDate { get; set; }
 
         public bool Status { get; set; }
 
@@ -82,10 +87,6 @@ namespace Direo.Dtos.MainDtos
 
         public int UserId { get; set; }
 
-        public CategoryDto Category { get; set; }
-        public LocationDto Location { get; set; }
-        public UserForListDto User { get; set; }
-       
 
     }
 }
