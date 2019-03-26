@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -110,9 +111,13 @@ namespace Direo.Models
 
         public virtual ICollection<Photo> Photos { get; set; }
         public virtual ICollection<ReviewsListing> ReviewsListings { get; set; }
-        public virtual ICollection<ListingTag> ListingTags { get; set; }
+        public virtual ICollection<ListingTag>Tags { get; set; }
         public virtual ICollection<OpeningHour> OpeningHours { get; set; }
         public virtual ICollection<FagListing> FagListings { get; set; }
 
+        public Listing()
+        {
+           Tags = new Collection<ListingTag>();
+        }
     }
 }

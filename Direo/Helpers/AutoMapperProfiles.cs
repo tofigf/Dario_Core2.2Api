@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Direo.Data;
 using Direo.Dtos;
 using Direo.Dtos.CategoryDtos;
 using Direo.Dtos.MainDtos;
@@ -12,8 +13,12 @@ namespace Direo.Helpers
 {
     public class AutoMapperProfiles:Profile
     {
+
         public AutoMapperProfiles()
         {
+            //App Url
+            var appBaseUrl = MyHttpContext.AppBaseUrl;
+
             //User
             CreateMap<UserForRegisterDto, User>().ReverseMap();
             CreateMap<UserForUpdateDto, User>().ReverseMap();
@@ -26,18 +31,38 @@ namespace Direo.Helpers
             //Location
             CreateMap<Location, LocationDto>().ReverseMap();
             //Listing
-            CreateMap<ListingPostDto, Listing>().ReverseMap();
-            CreateMap<Listing, ListingGetDto>().ReverseMap();
+            CreateMap<ListingPostDto, Listing>().ReverseMap()
+                .ForMember(dto=>dto.TagsGets,opt=> opt
+                .MapFrom(src=>src.Tags
+                .Select(s=>s.Tag)
+                .ToList()));
+            CreateMap<Listing, ListingGetDto>().ForMember(dto=>dto.PhotoFileName,opt=>opt
+            .MapFrom(src=> $"{appBaseUrl}/Uploads/" + src.PhotoFileName))
+            .ForMember(dto => dto.TagsGets, opt => opt
+                   .MapFrom(src => src.Tags
+                   .Select(s => s.Tag)
+                   .ToList())).ReverseMap();
             //ListingPhotos
             CreateMap<PhotosPostDto, Photo>()
       .ForMember(dto => dto.PhotoUrl, opt => opt.MapFrom(src => src.PhotoUrl))
       .ForMember(dto => dto.PhotoName, opt => opt.MapFrom(src => src.PhotoName));
-            //App Url
-            var appBaseUrl = MyHttpContext.AppBaseUrl;
+          
             //GetListig
             CreateMap<Photo, PhotosGetDto>()
-    .ForMember(dto =>dto.PhotoUrl, opt => opt.MapFrom(src => $"{appBaseUrl}/Uploads/" + src.PhotoName));
+    .ForMember(dto =>dto.PhotoName, opt => opt.MapFrom(src => $"{appBaseUrl}/Uploads/" + src.PhotoName));
+
+            //Tags
+            CreateMap<TagsPostDto, Tag>().ReverseMap()
+                .ForMember(dto=>dto.ListingGetDto,opt=>opt
+                .MapFrom(src=>src.Listings.Select(s=>s.Listing).ToList()));
+     
+            CreateMap<Tag, TagsGetDto>().ForMember(dto=>dto.ListingGetDto,opt=>
+            opt.MapFrom(src=>src
+            .Listings.Select(s=>s.Listing).ToList()));
+
+
+            //Eger limit vermek isteyirkese bu methoddan istifade edeceyik
+            //.MaxDepth(1)
         }
-      
     }
 }

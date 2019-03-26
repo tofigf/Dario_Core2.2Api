@@ -61,8 +61,9 @@ namespace Direo.Data.Repository
         {
             listing.UserId = userId;
             listing.PostDate = DateTime.UtcNow.AddHours(4);
-
-            listing.Photo = FileManager.Upload(listing.Photo);
+            Listing listingModel = new Listing();
+            listingModel.Photo = FileManager.Upload(listing.Photo);
+            listing.PhotoFileName = listingModel.Photo;
 
             await _context.Listings.AddAsync(listing);
 
@@ -78,7 +79,7 @@ namespace Direo.Data.Repository
            
             foreach (var slider in photos)
             {
-                if (string.IsNullOrWhiteSpace(slider.PhotoUrl) || string.IsNullOrWhiteSpace(slider.PhotoName))
+                if (string.IsNullOrWhiteSpace(slider.PhotoUrl))
                 {
                     continue;
                 }
@@ -87,10 +88,9 @@ namespace Direo.Data.Repository
                 photo.DateAdded = DateTime.UtcNow.AddHours(4);
                 try
                 {
-                
                     photo.PhotoUrl = FileManager.Upload(slider.PhotoUrl);
-                    photo.PhotoName = photo.PhotoUrl;
-                       photo.IsMain = true;
+                    slider.PhotoName = photo.PhotoUrl;
+                    photo.IsMain = true;
 
                     await _context.Photos.AddAsync(photo);
                     await _context.SaveChangesAsync();
@@ -101,6 +101,40 @@ namespace Direo.Data.Repository
                 }
             }
             return photos;
+        }
+
+
+        public async Task<IEnumerable<Tag>> CreateListingTags(IEnumerable<Tag> Tags,int listnigId)
+        {
+                /*Create PlaceTags*/
+                if (Tags != null)
+                {
+                    foreach (var tags in Tags)
+                    {
+                        #region CehckTagsNull
+                        if (!await _context.Tags.AnyAsync(t => t.Id == tags.Id))
+                        {
+                            continue;
+                        }
+                    #endregion
+
+                    ListingTag ListingTag = new ListingTag
+                    {
+                        TagId = tags.Id,
+                        ListingId = listnigId
+                        };
+
+                    Tag tagsGet = _context.Tags.Find(tags.Id);
+
+                        tags.Name = tagsGet.Name;
+
+                    //ListingTags add to context
+                    
+                            await _context.ListingTags.AddAsync(ListingTag);
+                            await _context.SaveChangesAsync();
+                }
+            }
+            return Tags;
         }
     }
 }

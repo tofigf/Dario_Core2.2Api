@@ -22,5 +22,21 @@ namespace Direo.Data
         public DbSet<Tag> Tags { get; set; }
         public DbSet<ListingTag> ListingTags { get; set; }
 
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<ListingTag>().HasKey(da =>
+        //      new { da.ListingId, da.TagId });
+
+        //    modelBuilder.Entity<ListingTag>()
+        //        .HasOne(da => da.Listing)
+        //        .WithMany(p => p.Tags)
+        //        .HasForeignKey(pt => pt.ListingId);
+
+        //    modelBuilder.Entity<ListingTag>()
+        //        .HasOne(pt => pt.Tag)
+        //        .WithMany(t => t.Listings)
+        //        .HasForeignKey(pt => pt.TagId);
+        //}
+
     }
 }

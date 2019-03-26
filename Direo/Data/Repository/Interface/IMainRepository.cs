@@ -19,5 +19,6 @@ namespace Direo.Data.Repository.Interface
         Task<PagedList<Listing>> GetListing(ListingParam listingParam);
         Task<Listing> CreateListing(Listing listingCreate, int userId);
         Task<IEnumerable<Photo>> CreateListingPhotos(IEnumerable<Photo> photos, int listingId);
+        Task<IEnumerable<Tag>> CreateListingTags(IEnumerable<Tag> tags, int listnigId);
     }
 }

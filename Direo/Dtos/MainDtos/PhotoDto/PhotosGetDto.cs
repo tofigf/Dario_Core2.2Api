@@ -7,9 +7,6 @@ namespace Direo.Dtos.MainDtos
 {
     public class PhotosGetDto
     {
-
-        public string PhotoUrl { get; set; }
-  
-
+        public string PhotoName { get; set; }
     }
 }

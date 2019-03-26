@@ -11,6 +11,7 @@ namespace Direo.Models.ViewModel
 
         public ListingGetDto ListingGet { get; set; }
         public IEnumerable<PhotosGetDto> PhotosGet { get; set; }
+        public IEnumerable<TagsGetDto> TagsGet { get; set; }
 
     }
 }

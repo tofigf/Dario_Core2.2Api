@@ -89,11 +89,18 @@ namespace Direo.Controllers
                  var photosToReturn = await _repo.CreateListingPhotos(photos, listing.Id);
 
                  var PhotosGet= _mapper.Map<IEnumerable<PhotosGetDto>>(photosToReturn);
+            /////////////////////////////////////////////////////////////////////////
+            ///Tags
+            var tags = _mapper.Map<IEnumerable<Tag>>(listingDtoCreate.TagsPost);
 
+            var tagToReturn = await _repo.CreateListingTags(tags, listing.Id);
+
+            var TagsGet = _mapper.Map<IEnumerable<TagsGetDto>>(tagToReturn);
             ListingCreateModel listingCreateModel = new ListingCreateModel
-                {
-                   ListingGet = ListingToGet,
-                    PhotosGet = PhotosGet
+            {
+                ListingGet = ListingToGet,
+                PhotosGet = PhotosGet,
+                TagsGet = TagsGet
             };
                 return Ok(listingCreateModel);
             
