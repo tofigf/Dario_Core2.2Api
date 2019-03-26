@@ -62,7 +62,7 @@ namespace Direo.Data.Repository
             listing.UserId = userId;
             listing.PostDate = DateTime.UtcNow.AddHours(4);
 
-            listing.Photo = FileManager.Upload(listing.Photo, listing.PhotoFileName);
+            listing.Photo = FileManager.Upload(listing.Photo);
 
             await _context.Listings.AddAsync(listing);
 
@@ -70,6 +70,37 @@ namespace Direo.Data.Repository
 
             return listing;
            
+        }
+
+
+        public async Task<IEnumerable<Photo>> CreateListingPhotos(IEnumerable<Photo> photos,int listingId)
+        {
+           
+            foreach (var slider in photos)
+            {
+                if (string.IsNullOrWhiteSpace(slider.PhotoUrl) || string.IsNullOrWhiteSpace(slider.PhotoName))
+                {
+                    continue;
+                }
+                Photo photo = new Photo();
+                photo.ListingId = listingId;
+                photo.DateAdded = DateTime.UtcNow.AddHours(4);
+                try
+                {
+                
+                    photo.PhotoUrl = FileManager.Upload(slider.PhotoUrl);
+                    photo.PhotoName = photo.PhotoUrl;
+                       photo.IsMain = true;
+
+                    await _context.Photos.AddAsync(photo);
+                    await _context.SaveChangesAsync();
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+            }
+            return photos;
         }
     }
 }

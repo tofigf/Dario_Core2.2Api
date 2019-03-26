@@ -9,10 +9,9 @@ using System.Threading.Tasks;
 
 namespace Direo.Dtos.MainDtos
 {
-    public class ListingDto
+    public class ListingGetDto
     {
 
-        public int Id { get; set; }
         public string Title { get; set; }
 
 
@@ -68,6 +67,7 @@ namespace Direo.Dtos.MainDtos
 
         public int? ViewsCount { get; set; }
 
+        public string Photo { get; set; }
 
         public decimal? Rating { get; set; }
 
@@ -81,11 +81,6 @@ namespace Direo.Dtos.MainDtos
         public int LocationId { get; set; }
 
         public int UserId { get; set; }
-
-        public CategoryDto Category { get; set; }
-        public LocationDto Location { get; set; }
-        public UserForListDto User { get; set; }
-       
 
     }
 }

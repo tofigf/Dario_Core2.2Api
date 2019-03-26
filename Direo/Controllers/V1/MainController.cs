@@ -59,7 +59,7 @@ namespace Direo.Controllers
         {
              var listings = await _repo.GetListing(listingParam);
 
-            var ListingToReturn = _mapper.Map<IEnumerable<ListingDto>>(listings);
+            var ListingToReturn = _mapper.Map<IEnumerable<ListingGetDto>>(listings);
 
              Response.AddPagination(listings.CurrentPage, listings.PageSize,
                listings.TotalCount, listings.TotalPages);
@@ -70,20 +70,35 @@ namespace Direo.Controllers
 
         [HttpPost]
         [Route("addlisting")]
-        public async Task<IActionResult> AddListing( ListingDtoCreateModel listingDtoCreate)
+        public async Task<IActionResult> AddListing(ListingDtoCreateModel listingDtoCreate)
         {
-            //if (listingDtoCreate.ListingPost.UserId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-            //    return Unauthorized();
             if (!ModelState.IsValid)
                 return BadRequest();
+          
+                var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
-            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+                var listing = _mapper.Map<Listing>(listingDtoCreate.ListingPost);
 
-            var listing = _mapper.Map<Listing>(listingDtoCreate.Listing);
+                var listingToReturn = await _repo.CreateListing(listing, userId);
 
-            var listingToReturn = await _repo.CreateListing(listing, userId);
+                var ListingToGet = _mapper.Map<ListingGetDto>(listingToReturn);
+            ////////////////////////////////////////////////////////////////////
+            ///Photos
+            var photos = _mapper.Map<IEnumerable<Photo>>(listingDtoCreate.PhotosPost);
+         
+                 var photosToReturn = await _repo.CreateListingPhotos(photos, listing.Id);
 
-            return Ok(listingToReturn);
+                 var PhotosGet= _mapper.Map<IEnumerable<PhotosGetDto>>(photosToReturn);
+
+            ListingCreateModel listingCreateModel = new ListingCreateModel
+                {
+                   ListingGet = ListingToGet,
+                    PhotosGet = PhotosGet
+            };
+                return Ok(listingCreateModel);
+            
+            
+
         }
     }
 }

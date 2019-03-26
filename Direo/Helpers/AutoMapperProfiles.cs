@@ -27,8 +27,16 @@ namespace Direo.Helpers
             CreateMap<Location, LocationDto>().ReverseMap();
             //Listing
             CreateMap<ListingPostDto, Listing>().ReverseMap();
-
-
+            CreateMap<Listing, ListingGetDto>().ReverseMap();
+            //ListingPhotos
+            CreateMap<PhotosPostDto, Photo>()
+      .ForMember(dto => dto.PhotoUrl, opt => opt.MapFrom(src => src.PhotoUrl))
+      .ForMember(dto => dto.PhotoName, opt => opt.MapFrom(src => src.PhotoName));
+            //App Url
+            var appBaseUrl = MyHttpContext.AppBaseUrl;
+            //GetListig
+            CreateMap<Photo, PhotosGetDto>()
+    .ForMember(dto =>dto.PhotoUrl, opt => opt.MapFrom(src => $"{appBaseUrl}/Uploads/" + src.PhotoName));
         }
       
     }

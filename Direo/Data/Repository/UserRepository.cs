@@ -49,7 +49,7 @@ namespace Direo.Data
             if (user.Username != null)
             {
                 user.Password = CryptoHelper.Crypto.HashPassword(password);
-                user.ImageUrl = FileManager.Upload(user.ImageUrl, "jpg");
+                user.ImageUrl = FileManager.Upload(user.ImageUrl);
                 //Delete that post
                 _context.Users.Update(user);
 

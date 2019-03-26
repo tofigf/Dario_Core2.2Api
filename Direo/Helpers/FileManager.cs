@@ -11,7 +11,7 @@ namespace Direo.Helpers
     {
 
 
-        public static string Upload(string FileRaw, string FileName)
+        public static string Upload(string FileRaw)
         {
 
             string data = "";
@@ -48,8 +48,8 @@ namespace Direo.Helpers
             {
                 Position = 0
             };
-            int i = FileName.LastIndexOf('.');
-            FileName = FileName.Substring(0, i);
+            //int i = FileName.LastIndexOf('.');
+            //FileName = FileName.Substring(0, i);
             string filename = DateTime.Now.ToString("yyyyMMddHHmmssfff") + "." + ext;
 
             var path = Path.Combine(

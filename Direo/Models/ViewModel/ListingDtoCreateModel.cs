@@ -8,6 +8,7 @@ namespace Direo.Models.ViewModel
 {
     public class ListingDtoCreateModel
     {
-        public ListingPostDto Listing { get; set; }
+        public ListingPostDto ListingPost { get; set; }
+        public IEnumerable<PhotosPostDto> PhotosPost { get; set; }
     }
 }
