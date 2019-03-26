@@ -52,8 +52,59 @@ namespace Direo.Data.Repository
 
         public async Task<PagedList<Listing>> GetListing(ListingParam listingParam)
         {
-            var listings = _context.Listings.Include(f => f.Photos);
+            var listings = _context.Listings.Include(f=>f.Photos).Include(l=>l.ListingTags).ThenInclude(t=>t.Tag).AsQueryable();
 
+            ///Filter by Category
+            if (listingParam.CategoryId != 0)
+            {
+                listings = listings.Where(c => c.CategoryId == listingParam.CategoryId);
+            }
+            ///Filter by Location
+            if (listingParam.LocationId != 0)
+            {
+                listings = listings.Where(c => c.LocationId == listingParam.LocationId);
+            }
+            ///Filter by Minimum Price
+            if (listingParam.MinPrice != 0)
+            {
+                listings = listings.Where(c => c.Price >= listingParam.MinPrice);
+            }
+            ///Filter by Maximum Price
+            if (listingParam.MaxPrice != 0)
+            {
+                listings = listings.Where(c => c.Price <= listingParam.MaxPrice);
+            }
+            ///Filter by Tags
+            ///
+            if (listingParam.TagId != null)
+            {
+                foreach (var item in listingParam.TagId)
+                {
+                    listings = listings.Where(c => c.ListingTags.Where(w => w.TagId == item) != null);
+                }
+            }
+            ///Order By
+            if (!string.IsNullOrEmpty(listingParam.OrderBy))
+            {
+                switch (listingParam.OrderBy)
+                {
+                    case "LowToHigh":
+                        listings = listings.OrderBy(u => u.Price);
+                        break;
+                    case "HighToLow":
+                        listings = listings.OrderByDescending(u => u.Price);
+                        break;
+                    case "AtoZ":
+                        listings = listings.OrderBy(u => u.Title);
+                        break;
+                    case "ZtoA":
+                        listings = listings.OrderByDescending(u => u.Title);
+                        break;
+                    default:
+                        listings = listings.OrderBy(u => u.Id);
+                        break;
+                }
+            }
             return await PagedList<Listing>.CreateAsync(listings, listingParam.PageNumber,listingParam.PageSize);
         }
 
@@ -72,7 +123,6 @@ namespace Direo.Data.Repository
             return listing;
            
         }
-
 
         public async Task<IEnumerable<Photo>> CreateListingPhotos(IEnumerable<Photo> photos,int listingId)
         {
@@ -102,7 +152,6 @@ namespace Direo.Data.Repository
             }
             return photos;
         }
-
 
         public async Task<IEnumerable<Tag>> CreateListingTags(IEnumerable<Tag> Tags,int listnigId)
         {

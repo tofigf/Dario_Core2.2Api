@@ -33,15 +33,15 @@ namespace Direo.Helpers
             //Listing
             CreateMap<ListingPostDto, Listing>().ReverseMap()
                 .ForMember(dto=>dto.TagsGets,opt=> opt
-                .MapFrom(src=>src.Tags
+                .MapFrom(src=>src.ListingTags
                 .Select(s=>s.Tag)
                 .ToList()));
             CreateMap<Listing, ListingGetDto>().ForMember(dto=>dto.PhotoFileName,opt=>opt
             .MapFrom(src=> $"{appBaseUrl}/Uploads/" + src.PhotoFileName))
             .ForMember(dto => dto.TagsGets, opt => opt
-                   .MapFrom(src => src.Tags
+                   .MapFrom(src => src.ListingTags
                    .Select(s => s.Tag)
-                   .ToList())).ReverseMap();
+                   .ToList()));
             //ListingPhotos
             CreateMap<PhotosPostDto, Photo>()
       .ForMember(dto => dto.PhotoUrl, opt => opt.MapFrom(src => src.PhotoUrl))

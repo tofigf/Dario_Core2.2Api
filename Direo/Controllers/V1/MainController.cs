@@ -66,8 +66,6 @@ namespace Direo.Controllers
 
             return Ok(ListingToReturn);
         }
-
-
         [HttpPost]
         [Route("addlisting")]
         public async Task<IActionResult> AddListing(ListingDtoCreateModel listingDtoCreate)
