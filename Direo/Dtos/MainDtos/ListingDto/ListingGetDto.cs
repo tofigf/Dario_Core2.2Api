@@ -83,11 +83,11 @@ namespace Direo.Dtos.MainDtos
 
         public int UserId { get; set; }
 
-        public IEnumerable<TagsGetDto> TagsGets { get; set; }
+        public ICollection<TagsGetDto> TagsGet { get; set; }
 
         public ListingGetDto()
         {
-            TagsGets = new Collection<TagsGetDto>();
+            TagsGet = new Collection<TagsGetDto>();
         }
 
     }

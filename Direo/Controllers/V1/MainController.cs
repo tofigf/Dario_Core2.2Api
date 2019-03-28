@@ -61,6 +61,8 @@ namespace Direo.Controllers
 
             var ListingToReturn = _mapper.Map<IEnumerable<ListingGetDto>>(listings);
 
+            //Tags = _mapper.Map<List<TagDTO>>(listing.ListingsTags.Select(t => t.Tag)),
+
              Response.AddPagination(listings.CurrentPage, listings.PageSize,
                listings.TotalCount, listings.TotalPages);
 
@@ -90,6 +92,7 @@ namespace Direo.Controllers
             /////////////////////////////////////////////////////////////////////////
             ///Tags
             var tags = _mapper.Map<IEnumerable<Tag>>(listingDtoCreate.TagsPost);
+        
 
             var tagToReturn = await _repo.CreateListingTags(tags, listing.Id);
 

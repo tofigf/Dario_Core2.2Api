@@ -31,17 +31,14 @@ namespace Direo.Helpers
             //Location
             CreateMap<Location, LocationDto>().ReverseMap();
             //Listing
-            CreateMap<ListingPostDto, Listing>().ReverseMap()
-                .ForMember(dto=>dto.TagsGets,opt=> opt
-                .MapFrom(src=>src.ListingTags
-                .Select(s=>s.Tag)
-                .ToList()));
-            CreateMap<Listing, ListingGetDto>().ForMember(dto=>dto.PhotoFileName,opt=>opt
+            CreateMap<ListingPostDto, Listing>().ReverseMap();
+            CreateMap<Listing, ListingGetDto>()
+                .ForMember(dto=>dto.PhotoFileName,opt=>opt
             .MapFrom(src=> $"{appBaseUrl}/Uploads/" + src.PhotoFileName))
-            .ForMember(dto => dto.TagsGets, opt => opt
+            .ForMember(dto => dto.TagsGet, opt => opt
                    .MapFrom(src => src.ListingTags
-                   .Select(s => s.Tag)
-                   .ToList()));
+                   .Select(s => s.Tag)));
+      
             //ListingPhotos
             CreateMap<PhotosPostDto, Photo>()
       .ForMember(dto => dto.PhotoUrl, opt => opt.MapFrom(src => src.PhotoUrl))
@@ -49,16 +46,13 @@ namespace Direo.Helpers
           
             //GetListig
             CreateMap<Photo, PhotosGetDto>()
-    .ForMember(dto =>dto.PhotoName, opt => opt.MapFrom(src => $"{appBaseUrl}/Uploads/" + src.PhotoName));
+    .ForMember(dto =>dto.PhotoName, opt => opt
+    .MapFrom(src => $"{appBaseUrl}/Uploads/" + src.PhotoName));
 
             //Tags
-            CreateMap<TagsPostDto, Tag>().ReverseMap()
-                .ForMember(dto=>dto.ListingGetDto,opt=>opt
-                .MapFrom(src=>src.Listings.Select(s=>s.Listing).ToList()));
+            CreateMap<TagsPostDto, Tag>().ReverseMap();
      
-            CreateMap<Tag, TagsGetDto>().ForMember(dto=>dto.ListingGetDto,opt=>
-            opt.MapFrom(src=>src
-            .Listings.Select(s=>s.Listing).ToList()));
+            CreateMap<Tag, TagsGetDto>();
 
 
             //Eger limit vermek isteyirkese bu methoddan istifade edeceyik

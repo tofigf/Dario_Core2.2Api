@@ -12,12 +12,12 @@ namespace Direo.Dtos.MainDtos
 
         public string Name { get; set; }
 
-        public IEnumerable<ListingGetDto> ListingGetDto { get; set; }
+        //public IEnumerable<ListingGetDto> ListingGetDto { get; set; }
 
-        public TagsGetDto()
-        {
-            ListingGetDto = new Collection<ListingGetDto>();
-        }
+        //public TagsGetDto()
+        //{
+        //    ListingGetDto = new Collection<ListingGetDto>();
+        //}
 
     }
 }

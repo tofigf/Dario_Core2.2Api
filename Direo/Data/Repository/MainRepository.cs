@@ -52,7 +52,10 @@ namespace Direo.Data.Repository
 
         public async Task<PagedList<Listing>> GetListing(ListingParam listingParam)
         {
-            var listings = _context.Listings.Include(f=>f.Photos).Include(l=>l.ListingTags).ThenInclude(t=>t.Tag).AsQueryable();
+            var listings = _context.Listings
+                .Include(f=>f.Photos)
+                .Include(l=>l.ListingTags)
+                .ThenInclude(t=>t.Tag).OrderByDescending(o=>o.Id).AsQueryable();
 
             ///Filter by Category
             if (listingParam.CategoryId != 0)
@@ -75,7 +78,7 @@ namespace Direo.Data.Repository
                 listings = listings.Where(c => c.Price <= listingParam.MaxPrice);
             }
             ///Filter by Tags
-            ///
+            /// 
             if (listingParam.TagId != null)
             {
                 foreach (var item in listingParam.TagId)

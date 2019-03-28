@@ -14,11 +14,11 @@ namespace Direo.Models
         [MaxLength(50)]
         public string Name { get; set; }
 
-        public virtual ICollection<ListingTag> Listings { get; set; }
+        public virtual ICollection<ListingTag> ListingsTag { get; set; }
 
         public Tag()
         {
-            Listings = new Collection<ListingTag>();
+            ListingsTag = new Collection<ListingTag>();
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Direo.Helpers
             response.Headers.Add("Access-Control-Expose-Headers", "Application-Error");
             response.Headers.Add("Access-Control-Allow-Origin", "*");
         }
-
+        //Pagination
         public static void AddPagination(this HttpResponse response,
       int currentPage, int itemsPerPage, int totalItems, int totalPages)
         {
@@ -30,6 +30,7 @@ namespace Direo.Helpers
                 JsonConvert.SerializeObject(paginationHeader, camelCaseFormatter));
             response.Headers.Add("Access-Control-Expose-Headers", "Pagination");
         }
+        //Yas hesablama methodu
         public static int CalculateAge(this DateTime theDateTime)
         {
             var age = DateTime.Today.Year - theDateTime.Year;
@@ -38,7 +39,7 @@ namespace Direo.Helpers
 
             return age;
         }
-
+        //Login olmus user  id 
         public static string GetUserId(this ClaimsPrincipal principal)
         {
             if (principal == null)
@@ -58,24 +59,10 @@ namespace Direo.Helpers
 
         
     }
-    //public class MyHttpContext
-    //{
-    //    private static IHttpContextAccessor m_httpContextAccessor;
-
-    //    public static HttpContext Current => m_httpContextAccessor.HttpContext;
-
-    //    public static string AppBaseUrl => $"{Current.Request.Scheme}://{Current.Request.Host}{Current.Request.PathBase}";
-    //    //public static void ImageUrl(string FolderPath,string ImagePath)
-    //    //{
-    //    //      string BaseUrl = $"{Current.Request.Scheme}://{Current.Request.Host}{Current.Request.PathBase}{FolderPath}{ImagePath}";
-    //    //}
-
-    //    internal static void Configure(IHttpContextAccessor contextAccessor)
-    //    {
-    //        m_httpContextAccessor = contextAccessor;
-    //    }
-    //}
-
+   
+    /// <summary>
+    /// Bu Metodla BaseUrl- istenilen yerde cagira bilirik. Startupda-usingleri etdikden sonra isleyir.
+    /// </summary>
     public class MyHttpContext
     {
         private static IHttpContextAccessor m_httpContextAccessor;

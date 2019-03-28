@@ -29,7 +29,7 @@ namespace Direo.Data
 
         //    modelBuilder.Entity<ListingTag>()
         //        .HasOne(da => da.Listing)
-        //        .WithMany(p => p.Tags)
+        //        .WithMany(p => p.ListingTags)
         //        .HasForeignKey(pt => pt.ListingId);
 
         //    modelBuilder.Entity<ListingTag>()

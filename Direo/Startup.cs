@@ -46,6 +46,7 @@ namespace Direo
             services.AddAutoMapper();
             services.AddTransient<Seed>();
             services.AddCors();
+            //Url-ni goturmek ucun Extensions classinda middlware yaradiriq app-de de cagiririq. bunu yaziriq ki baseUrl-ni goture bilek
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
@@ -78,7 +79,9 @@ namespace Direo
             seeder.SeedUsers();
             app.UseAuthentication();
             app.UseHttpsRedirection();
+            //Faylari yuklemek ucun
             app.UseStaticFiles();
+            //BaseUrl-ni elde etmek ucun
             app.UseHttpContext();
             app.UseMvc();
         }
